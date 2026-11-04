@@ -1,0 +1,371 @@
+{
+  "version": "0.1.0",
+  "about": "Starter rulebook for Halal Check. Rulings differ between scholars and certifiers. Have a knowledgeable person review every rule before public use, and add a source for each one.",
+  "rules": [
+    {
+      "id": "pork",
+      "label": "Pork or pork product",
+      "status": "prohibited",
+      "pattern": "\\b(pork|pig|pigs|swine|porcine|bacon|ham|lard|prosciutto|pancetta|gammon|hog)\\b",
+      "reason": "Pork and pork products are prohibited.",
+      "examples": ["pork fat", "bacon bits", "lard", "porcine gelatin"],
+      "non_examples": ["graham crackers", "hamburger bun", "pigment"]
+    },
+    {
+      "id": "bacon_flavour",
+      "label": "Bacon flavour",
+      "status": "doubtful",
+      "pattern": "\\b(imitation bacon|artificial bacon|bacon[- ]flavou?r(?:ed|ing|s)?)\\b",
+      "reason": "Bacon flavour can be made without pork, but some contains it.",
+      "question": "Ask the maker whether the bacon flavour contains pork, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["bacon flavouring", "imitation bacon bits"],
+      "non_examples": ["bacon bits"]
+    },
+    {
+      "id": "blood",
+      "label": "Blood",
+      "status": "prohibited",
+      "pattern": "\\bblood(?: plasma| meal| sausage)?\\b",
+      "reason": "Blood is prohibited.",
+      "examples": ["blood plasma", "blood sausage"],
+      "non_examples": ["blood orange juice"]
+    },
+    {
+      "id": "blood_orange",
+      "label": "Blood orange",
+      "status": "ok",
+      "pattern": "\\bblood oranges?\\b",
+      "reason": "A fruit, not blood.",
+      "examples": ["blood orange juice"],
+      "non_examples": []
+    },
+    {
+      "id": "alcohol_drink",
+      "label": "Alcoholic drink as an ingredient",
+      "status": "prohibited",
+      "pattern": "\\b(wine|beer|rum|whisk(?:e)?y|vodka|brandy|liquor|liqueur|sake|mirin|cognac|champagne|bourbon|gin|tequila|sherry|amaretto)\\b",
+      "reason": "Alcoholic drinks are prohibited, including when used in cooking.",
+      "note": "A few scholars allow alcohol that is fully cooked off. Most certifiers do not.",
+      "examples": ["red wine", "beer batter", "mirin", "rum"],
+      "non_examples": ["root beer", "ginger beer", "liquorice", "ginger", "wine gums"]
+    },
+    {
+      "id": "alcohol_drink_ok",
+      "label": "Name that does not mean alcohol",
+      "status": "ok",
+      "pattern": "\\b(root beer|ginger beer|non[- ]alcoholic (?:beer|wine)|alcohol[- ]free (?:beer|wine)|wine gums?)\\b",
+      "reason": "These names do not mean alcohol is present.",
+      "examples": ["root beer", "wine gums"],
+      "non_examples": []
+    },
+    {
+      "id": "alcohol_flavour",
+      "label": "Alcohol flavour or extract",
+      "status": "doubtful",
+      "pattern": "\\b(?:rum|wine|beer|whisk(?:e)?y|brandy|vodka|bourbon|sherry) (?:flavou?r(?:ed|ing|s)?|essence|extract)\\b",
+      "reason": "A flavour or extract with an alcohol name may or may not contain alcohol.",
+      "question": "Ask the maker whether the flavour contains alcohol.",
+      "examples": ["rum flavouring", "brandy extract"],
+      "non_examples": []
+    },
+    {
+      "id": "wine_vinegar",
+      "label": "Wine or sherry vinegar",
+      "status": "check",
+      "pattern": "\\b(?:wine|sherry|champagne) vinegar\\b",
+      "reason": "Vinegar made from wine. Many scholars accept it once it has turned to vinegar, and some do not.",
+      "question": "Check your own school's view on wine vinegar.",
+      "examples": ["red wine vinegar"],
+      "non_examples": []
+    },
+    {
+      "id": "ethanol",
+      "label": "Alcohol (ethanol)",
+      "status": "doubtful",
+      "pattern": "\\b(ethyl alcohol|ethanol|alcohol)\\b",
+      "reason": "Ethanol is used as a solvent or carrier in some flavours and extracts.",
+      "note": "Scholars and certifiers differ on small amounts used as a carrier.",
+      "question": "Ask the maker how much alcohol is used and why, or check your certifier's rule.",
+      "examples": ["alcohol", "ethanol", "ethyl alcohol"],
+      "non_examples": ["sugar alcohol", "cetyl alcohol", "alcohol-free", "non-alcoholic"]
+    },
+    {
+      "id": "alcohol_ok",
+      "label": "Not drinking alcohol",
+      "status": "ok",
+      "pattern": "\\b(alcohol[- ]free|non[- ]alcoholic|(?:cetyl|stearyl|cetearyl|benzyl|lauryl|fatty|polyvinyl|isopropyl) alcohol|sugar alcohols?)\\b",
+      "reason": "These are not drinking alcohol.",
+      "examples": ["cetyl alcohol", "sugar alcohol"],
+      "non_examples": []
+    },
+    {
+      "id": "gelatin",
+      "label": "Gelatin",
+      "status": "doubtful",
+      "pattern": "\\b(gelatin(?:e)?|e441)\\b",
+      "reason": "Gelatin often comes from pork, or from cattle that may not be halal slaughtered.",
+      "question": "Ask the maker for the gelatin source, or look for a halal logo or fish gelatin.",
+      "cleared_by_claim": true,
+      "examples": ["gelatin", "gelatine", "e441", "E 441"],
+      "non_examples": ["fish gelatin", "halal beef gelatin"]
+    },
+    {
+      "id": "gelatin_ok",
+      "label": "Gelatin with a stated fish or halal source",
+      "status": "ok",
+      "pattern": "\\b(?:(?:fish|marine) (?:gelatin(?:e)?|collagen)|halal[- ](?:certified )?(?:beef |bovine )?gelatin(?:e)?)\\b",
+      "reason": "The label states a fish or halal source.",
+      "note": "A halal claim written in an ingredient list is the maker's own statement.",
+      "examples": ["fish gelatin", "halal beef gelatin", "marine collagen"],
+      "non_examples": []
+    },
+    {
+      "id": "collagen",
+      "label": "Collagen",
+      "status": "doubtful",
+      "pattern": "\\bcollagen\\b",
+      "reason": "Collagen usually comes from cattle or pigs.",
+      "question": "Ask for the collagen source, or look for marine collagen or a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["collagen casing"],
+      "non_examples": ["marine collagen"]
+    },
+    {
+      "id": "meat",
+      "label": "Meat or poultry",
+      "status": "doubtful",
+      "pattern": "\\b(?:beef|chicken|lamb|mutton|turkey|duck|veal|goat(?! (?:milk|cheese|yogurt|yoghurt))|meat|poultry|broth|bone marrow)\\b",
+      "reason": "Meat must come from an animal slaughtered by halal rules. A label cannot show this.",
+      "question": "Ask for the halal certificate for the meat, or buy products with a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["chicken", "beef extract", "meat", "goat"],
+      "non_examples": ["goat milk", "goat cheese", "vegetable broth", "halal chicken"]
+    },
+    {
+      "id": "meat_ok",
+      "label": "Meat the label calls halal",
+      "status": "ok",
+      "pattern": "\\bhalal[- ](?:certified )?(?:beef |bovine )?(?:beef|chicken|lamb|mutton|turkey|duck|veal|goat|meat|poultry)\\b",
+      "reason": "The ingredient list says the meat is halal.",
+      "note": "This is the maker's own statement. Look for the certifier's logo on the pack.",
+      "examples": ["halal chicken", "halal certified beef"],
+      "non_examples": []
+    },
+    {
+      "id": "plant_broth",
+      "label": "Plant broth",
+      "status": "ok",
+      "pattern": "\\b(?:vegetable|mushroom|vegan|veggie) (?:broth|stock)\\b",
+      "reason": "A plant broth.",
+      "examples": ["vegetable broth"],
+      "non_examples": []
+    },
+    {
+      "id": "meat_flavour",
+      "label": "Meat flavour or seasoning",
+      "status": "doubtful",
+      "pattern": "\\b(?:chicken|beef|lamb|turkey) (?:flavou?r(?:ed|ing|s)?|seasoning)\\b",
+      "reason": "Meat flavour can be made without meat, but some contains it.",
+      "question": "Ask the maker whether the flavour contains meat, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["chicken flavour", "beef seasoning"],
+      "non_examples": ["pork flavouring"]
+    },
+    {
+      "id": "processed_meat",
+      "label": "Sausage or cured meat",
+      "status": "doubtful",
+      "pattern": "\\b(pepperoni|salami|chorizo|sausages?|hot ?dogs?|frankfurters?|mortadella|bologna|jerky)\\b",
+      "reason": "Often made with pork, or with meat that may not be halal slaughtered.",
+      "question": "Check the meat type and look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["pepperoni", "chicken sausage"],
+      "non_examples": ["pepper"]
+    },
+    {
+      "id": "animal_fat",
+      "label": "Animal fat",
+      "status": "doubtful",
+      "pattern": "\\b(animal fat|animal shortening|animal oil|tallow|suet|dripping|drippings|beef fat|chicken fat|schmaltz)\\b",
+      "reason": "Animal fat can come from pork, or from animals that may not be halal slaughtered.",
+      "question": "Ask for the animal source, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["tallow", "beef fat"],
+      "non_examples": ["vegetable fat"]
+    },
+    {
+      "id": "enzymes",
+      "label": "Enzymes (source not stated)",
+      "status": "doubtful",
+      "pattern": "\\b(enzymes?|pepsin|rennin|trypsin|pancreatin)\\b",
+      "reason": "Enzymes can come from animals, including pigs, or from microbes and plants.",
+      "question": "Ask whether the enzymes are microbial or plant based, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["enzymes", "pepsin", "enzyme"],
+      "non_examples": ["microbial enzymes", "vegetable rennet"]
+    },
+    {
+      "id": "enzymes_ok",
+      "label": "Enzymes with a stated non-animal source",
+      "status": "ok",
+      "pattern": "\\b(?:microbial|vegetable|fungal|plant|non[- ]animal|bacterial|fermentation[- ]derived|fermentation[- ]produced) (?:enzymes?|rennet|chymosin|lipase|protease)\\b",
+      "reason": "The label states a non-animal source.",
+      "examples": ["microbial enzymes", "vegetable rennet", "microbial rennet"],
+      "non_examples": []
+    },
+    {
+      "id": "rennet",
+      "label": "Rennet",
+      "status": "doubtful",
+      "pattern": "\\b(rennet|chymosin|calf rennet|animal rennet)\\b",
+      "reason": "Rennet is often taken from calves. Some is made by microbes.",
+      "question": "Ask whether the rennet is microbial or vegetarian, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["rennet", "calf rennet"],
+      "non_examples": ["microbial rennet"]
+    },
+    {
+      "id": "cheese",
+      "label": "Cheese or whey",
+      "status": "check",
+      "pattern": "\\b(cheese|cheddar|parmesan|parmigiano|mozzarella|paneer|whey)\\b",
+      "reason": "Cheese and whey can involve animal rennet. The source is rarely on the label.",
+      "question": "Look for microbial or vegetarian rennet, or a halal logo.",
+      "examples": ["cheddar cheese", "whey powder"],
+      "non_examples": ["cheesecake"]
+    },
+    {
+      "id": "flavouring",
+      "label": "Flavouring (source not stated)",
+      "status": "check",
+      "pattern": "\\b(?:natural |artificial |nature[- ]identical )?flavou?r(?:s|ing|ings)?\\b",
+      "reason": "Flavourings can use alcohol as a carrier or contain animal material. The label rarely says.",
+      "examples": ["natural flavours", "flavouring"],
+      "non_examples": []
+    },
+    {
+      "id": "vanilla_extract",
+      "label": "Vanilla extract",
+      "status": "check",
+      "pattern": "\\bvanilla extract\\b",
+      "reason": "Vanilla extract is usually made with alcohol. Many scholars accept small amounts, others do not.",
+      "examples": ["vanilla extract"],
+      "non_examples": []
+    },
+    {
+      "id": "soy_sauce",
+      "label": "Soy sauce",
+      "status": "check",
+      "pattern": "\\b(soy sauce|tamari|shoyu)\\b",
+      "reason": "Brewed soy sauce can contain a small amount of alcohol from fermentation. Views differ.",
+      "examples": ["soy sauce"],
+      "non_examples": []
+    },
+    {
+      "id": "glycerin",
+      "label": "Glycerin",
+      "status": "check",
+      "pattern": "\\b(glycerol|glycerine|glycerin|e422)\\b",
+      "reason": "Glycerin can be plant or animal based. The source is rarely on the label.",
+      "examples": ["glycerin", "e422"],
+      "non_examples": []
+    },
+    {
+      "id": "stearates",
+      "label": "Stearic acid or stearates",
+      "status": "check",
+      "pattern": "\\b(stearic acid|magnesium stearate|calcium stearate|e570|e572)\\b",
+      "reason": "Fatty acids can be plant or animal based. The source is rarely on the label.",
+      "examples": ["magnesium stearate"],
+      "non_examples": []
+    },
+    {
+      "id": "emulsifiers",
+      "label": "Fatty-acid emulsifier (source not stated)",
+      "status": "doubtful",
+      "pattern": "\\b(?:e(?:430|431|432|433|434|435|436|470a|470b|471|472[a-f]|473|474|475|476|477|478|479b|481|482|483|491|492|493|494|495)|mono[- ]{0,2}(?:and|&)[- ]{0,2}di-?glycerides?(?: of fatty acids)?|monoglycerides?|diglycerides?|polysorbate(?: 60| 65| 80)?|sorbitan (?:mono|tri)stearate|sucrose esters?(?: of fatty acids)?)\\b",
+      "reason": "Made from fatty acids that can be animal or plant based. The source is rarely on the label.",
+      "question": "Ask the maker whether the emulsifier is plant based, or look for a halal or vegan logo.",
+      "cleared_by_claim": true,
+      "examples": ["emulsifier (e471)", "mono- and diglycerides of fatty acids", "E 472e", "polysorbate 80"],
+      "non_examples": ["vegetable mono- and diglycerides", "palm-based monoglycerides"]
+    },
+    {
+      "id": "emulsifiers_ok",
+      "label": "Emulsifier with a stated plant source",
+      "status": "ok",
+      "pattern": "\\b(?:vegetable|plant|palm|soy(?:a|bean)?|sunflower|rapeseed|canola)(?:[- ]based)? (?:mono[- ]{0,2}(?:and|&)[- ]{0,2}di-?glycerides?|monoglycerides?|diglycerides?|emulsifiers?)(?: of fatty acids)?\\b",
+      "reason": "The label states a plant source.",
+      "examples": ["vegetable mono- and diglycerides", "palm-based monoglycerides"],
+      "non_examples": []
+    },
+    {
+      "id": "carmine",
+      "label": "Carmine (insect-based red colour)",
+      "status": "doubtful",
+      "pattern": "\\b(carmine|carminic acid|cochineal|crimson lake|natural red 4|e120)\\b",
+      "reason": "A red colour made from insects.",
+      "note": "Scholars and certifiers differ on insect-derived ingredients.",
+      "question": "Check your own school's view, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["carmine", "cochineal extract", "e120"],
+      "non_examples": []
+    },
+    {
+      "id": "shellac",
+      "label": "Shellac (insect-based glaze)",
+      "status": "doubtful",
+      "pattern": "\\b(shellac|confectioner'?s glaze|resinous glaze|e904)\\b",
+      "reason": "A glaze made from an insect secretion.",
+      "note": "Scholars and certifiers differ on insect-derived ingredients.",
+      "question": "Check your own school's view, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["shellac", "confectioner's glaze", "e904"],
+      "non_examples": []
+    },
+    {
+      "id": "cysteine",
+      "label": "L-cysteine",
+      "status": "doubtful",
+      "pattern": "\\b(l-?cysteine(?: hydrochloride)?|e920)\\b",
+      "reason": "Can come from animal hair or feathers. Some is made without animals.",
+      "question": "Ask the maker whether the L-cysteine is synthetic or plant based.",
+      "cleared_by_claim": true,
+      "examples": ["l-cysteine", "e920"],
+      "non_examples": []
+    },
+    {
+      "id": "bone",
+      "label": "Bone-derived ingredient",
+      "status": "doubtful",
+      "pattern": "\\b(bone phosphate|bone char|bone meal|e542)\\b",
+      "reason": "Made from animal bones.",
+      "question": "Ask for the animal source, or look for a halal logo.",
+      "cleared_by_claim": true,
+      "examples": ["bone phosphate", "e542"],
+      "non_examples": []
+    },
+    {
+      "id": "nucleotides",
+      "label": "Flavour enhancer (source not stated)",
+      "status": "doubtful",
+      "pattern": "\\b(?:e(?:627|631|635)|disodium (?:inosinate|guanylate|5['’]?-ribonucleotides)|inosinic acid|guanylic acid)\\b",
+      "reason": "Can be made from meat, fish or plant sources.",
+      "question": "Ask the maker for the source of the flavour enhancer.",
+      "cleared_by_claim": true,
+      "examples": ["e631", "disodium inosinate"],
+      "non_examples": []
+    },
+    {
+      "id": "seafood",
+      "label": "Shellfish or other seafood",
+      "status": "check",
+      "pattern": "\\b(shrimps?|prawns?|crabs?|lobsters?|crayfish|squid|octopus|shellfish|clams?|oysters?|mussels?|scallops?)\\b",
+      "reason": "Views on some seafood differ between schools of thought.",
+      "question": "Follow your own school's view on shellfish.",
+      "examples": ["shrimp", "oyster sauce"],
+      "non_examples": []
+    }
+  ]
+}
