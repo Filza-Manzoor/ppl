@@ -1,8 +1,8 @@
 import pytest
 from sqlalchemy import select
 
-from peopl import auth, copy, db, posts
-from peopl.settings import load_settings
+from ppl import auth, copy, db, posts
+from ppl.settings import load_settings
 
 PEPPER = "test-secret"
 DOMAINS = ("uchicago.edu",)

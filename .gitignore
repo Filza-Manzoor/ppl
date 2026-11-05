@@ -7,5 +7,5 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
-data/peopl.db
+data/ppl.db
 *.db

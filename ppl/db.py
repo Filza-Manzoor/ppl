@@ -22,7 +22,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.pool import StaticPool
 
-DEFAULT_URL = "sqlite:///" + str(Path(__file__).resolve().parent.parent / "data" / "peopl.db")
+DEFAULT_URL = "sqlite:///" + str(Path(__file__).resolve().parent.parent / "data" / "ppl.db")
 
 metadata = MetaData()
 

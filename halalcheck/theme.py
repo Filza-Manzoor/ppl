@@ -174,8 +174,8 @@ def _plural(n: int) -> str:
 
 
 def plate_card_html(p: dict, now: int) -> str:
-    from peopl import copy
-    from peopl.timefmt import ago_text, until_text
+    from ppl import copy
+    from ppl.timefmt import ago_text, until_text
 
     nick = p["nickname"]
     body = esc(p["body"]).replace("\n", "<br>")
@@ -204,7 +204,7 @@ def plate_card_html(p: dict, now: int) -> str:
 
 
 def event_card_html(e: dict, now: int) -> str:
-    from peopl.timefmt import event_when
+    from ppl.timefmt import event_when
 
     body = esc(e["body"]).replace("\n", "<br>")
     return (

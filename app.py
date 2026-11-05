@@ -9,9 +9,9 @@ import streamlit as st
 
 from halalcheck import theme
 from halalcheck import ui as foodcheck
-from peopl import auth, db, mail
-from peopl import ui as community
-from peopl.settings import load_settings
+from ppl import auth, db, mail
+from ppl import ui as community
+from ppl.settings import load_settings
 
 try:
     from PIL import Image
