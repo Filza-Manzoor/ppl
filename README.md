@@ -6,7 +6,7 @@
 
 ## What it does
 
-- **Plates.** Post it like you would tell a friend: "I made dal and have one plate left. Want it?" Friends tap "I'd love a plate". Afterwards they can tell the cook how it was.
+- **Plates.** Post it like you would tell a friend: "I made rice and have one plate left. Want it?" Friends tap "I'd love a plate". Afterwards they can tell the cook how it was.
 - **Events.** Posted by approved organizers only.
 - **Say hi.** A small message thread under each plate.
 - **Food check.** Barcode, label photo, name search or dish photo. Rules decide the verdict; the AI only reads photos. No chatbot.
