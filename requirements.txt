@@ -1,4 +1,7 @@
-streamlit>=1.40
+streamlit>=1.46
 requests>=2.31
 Pillow>=10.0
+SQLAlchemy>=2.0
+psycopg2-binary>=2.9
+tzdata
 pytest>=8.0

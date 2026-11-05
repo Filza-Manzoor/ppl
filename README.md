@@ -1,85 +1,49 @@
-# Halal Check
+# Peopl
 
-Scan or search a food and see *why* it looks halal, doubtful or not halal. It shows its reasons, what to ask the maker, and where scholars differ.
+*Good food travels between friends.* A small closed-loop community app for UChicago: share a plate, find a plate, see events, and check what is in your food.
 
-> **Halal Check gives information, not a religious ruling.** Scholars and certifiers differ, and recipes change. Look for a halal logo from a certifier you trust.
+> The food check gives information, not a religious ruling. Scholars and certifiers differ, and recipes change. Peopl is a student project and is not run by the University of Chicago.
 
-## How it is different
+## What it does
 
-- **The AI reads, the rules decide.** Gemini only reads text from photos. Every verdict comes from `halalcheck/data/rules.json`, so text printed on a pack cannot talk the app into an answer.
-- **It explains.** Each flagged ingredient shows a reason, a note where views differ, and a question to ask.
-- **It leans toward caution.** Unknown ingredient sources are "doubtful", not "ok". A missing ingredient list is "can't tell", never "halal".
-- **A dish photo never gets a halal verdict.** A photo can't show how meat was sourced. It lists likely ingredients and questions to ask.
-- **Country aware.** Pick your country. If the product record is for another country's version, you get a warning.
-- **Private.** Photos are resized, stripped of EXIF/GPS, sent to Gemini and not stored. Location is never saved.
-
-## Input order (most to least reliable)
-
-1. Barcode: exact product record from Open Food Facts.
-2. Ingredient label photo: reads the pack in your hand.
-3. Product name: search, you pick a match, with a warning that recipes differ.
-4. Dish photo: likely ingredients and questions only.
+- **Plates.** Post it like you would tell a friend: "I made dal and have one plate left. Want it?" Friends tap "I'd love a plate". Afterwards they can tell the cook how it was.
+- **Events.** Posted by approved organizers only.
+- **Say hi.** A small message thread under each plate.
+- **Food check.** Barcode, label photo, name search or dish photo. Rules decide the verdict; the AI only reads photos. No chatbot.
+- **Closed loop.** Sign in with a uchicago.edu email and a 6-digit code. No password. Email addresses are not stored, only a keyed hash.
 
 ## Run it locally
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env          # then paste your free Gemini key
-export $(grep -v '^#' .env | xargs)
+export APP_SECRET=anything DEV_SHOW_CODE=1 ADMIN_EMAILS=you@uchicago.edu
 streamlit run app.py
-pytest                        # 169 tests, no network needed
 ```
 
-Free Gemini key: https://aistudio.google.com/apikey. Without a key, typed barcodes and name search still work.
+With `DEV_SHOW_CODE=1` the sign-in code appears on screen, so no email setup is needed. Never use that in production.
 
-## Put it online for free (Streamlit Community Cloud)
+Tests: `python -m pytest -q` (202 pass).
 
-1. Push this folder to a **public GitHub repo** (never commit `.env`; `.gitignore` already blocks it).
-2. Go to https://share.streamlit.io, sign in with GitHub, choose the repo, main file `app.py`.
-3. Under **Advanced settings > Secrets** paste:
-   ```toml
-   GEMINI_API_KEY = "your-key"
-   ```
-4. Deploy. Share the link. Free apps sleep when idle and wake on the next visit.
+## Settings
 
-## Keep feedback in a Google Sheet (optional)
+See `.env.example`. Key ones: `APP_SECRET`, `DATABASE_URL`, `ALLOWED_DOMAINS`, `ADMIN_EMAILS`, `SMTP_*`, `GEMINI_API_KEY`.
 
-Free hosts delete local files on restart. To keep reports:
+## Deploy free (Streamlit Community Cloud)
 
-1. Create a Google Sheet. Extensions > Apps Script. Paste:
-   ```javascript
-   function doPost(e) {
-     var d = JSON.parse(e.postData.contents);
-     SpreadsheetApp.getActiveSheet().appendRow([d.time, d.source, d.verdict, d.reason, d.comment, d.product_code, (d.rule_ids || []).join(","), d.rulebook_version]);
-     return ContentService.createTextOutput("ok");
-   }
-   ```
-2. Deploy > New deployment > Web app, access "Anyone". Copy the URL.
-3. Add `FEEDBACK_WEBHOOK_URL = "that-url"` to your secrets.
+1. Push to GitHub, then create the app at share.streamlit.io with `app.py`.
+2. Streamlit Cloud wipes local files on restart, so SQLite will not last. Make a free Supabase project and put its Postgres connection string in `DATABASE_URL`.
+3. Set `APP_SECRET`, `ADMIN_EMAILS`, the `SMTP_*` values and `GEMINI_API_KEY` in Settings > Secrets. Leave `DEV_SHOW_CODE` off.
 
-## Limits to know before testing with people
+## Before a real pilot
 
-- **Free Gemini limits are small.** The app caps photo checks per visit (`VISION_CALLS_PER_SESSION`, default 12) and caches product lookups. Many testers at once can still hit the daily limit; the app then shows a "busy" message.
-- **The model name may change.** If photo reading fails with a model error, set `GEMINI_MODEL` to a current Gemini Flash model.
-- **Open Food Facts is crowd-sourced.** Records can be old, wrong or missing. Be gentle with it: don't build bulk scrapers on this.
-- **The rulebook is a starting point, not a fatwa.** Have a knowledgeable person review `rules.json` and add sources before a public launch. Each rule has `examples` and `non_examples` that the tests check, so add those when you add rules.
+- Talk to the MSA board and UChicago Student Life about sharing home-cooked food. Get legal advice.
+- Test sign-in email, Postgres and the Gemini calls live. Only mocked tests exist so far.
+- Have a knowledgeable person review `halalcheck/data/rules.json`.
+- Start with 10 to 15 students.
 
-## Add or change a rule
+## Safety and limits
 
-Edit `halalcheck/data/rules.json`. Status is `prohibited`, `doubtful`, `check` or `ok`. `ok` rules exist to cancel false alarms (for example "ginger beer"); the longest match wins. `cleared_by_claim: true` means a halal label on the product lowers a `doubtful` item. Run `pytest`.
+Plates need an ingredients and allergens note and a "packed and stored safely" tick. Daily limits: 6 posts, 4 claims, 30 messages. Anyone can report a post; admins can hide, dismiss, ban. People can delete their account and all their data. No money moves through the app.
 
-## Layout
-
-```
-app.py                  Streamlit UI
-halalcheck/rules.py     rule engine and verdicts
-halalcheck/off.py       Open Food Facts client
-halalcheck/vision.py    Gemini photo reading
-halalcheck/pipeline.py  connects data to rules
-halalcheck/feedback.py  report logging
-halalcheck/data/rules.json
-tests/
-```
-
-Product data from Open Food Facts, under the Open Database License.
+Product data: Open Food Facts (ODbL).

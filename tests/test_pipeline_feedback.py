@@ -89,3 +89,15 @@ def test_feedback_webhook_failure_is_swallowed(tmp_path, monkeypatch):
 
     monkeypatch.setattr(requests, "post", boom)
     assert feedback.log_feedback({"verdict": "x"}, path=tmp_path / "f.jsonl", webhook="https://example.invalid")
+
+
+def test_result_card_escapes_untrusted_text():
+    from halalcheck import theme
+
+    a = rules.analyze("<script>alert(1)</script> lard")
+    html_out = theme.result_html(a, title="<img src=x onerror=alert(1)>", warnings=["<b>hi</b>"])
+    assert "<script>" not in html_out
+    assert "<img" not in html_out
+    assert "<b>hi</b>" not in html_out
+    assert "&lt;img" in html_out
+    assert "v-no" in html_out

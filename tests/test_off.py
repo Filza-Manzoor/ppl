@@ -56,7 +56,7 @@ def test_get_product_parses_fields_and_sends_user_agent():
     assert product.name == "Cola"
     assert product.countries == ["france", "united-kingdom"]
     assert product.has_ingredients
-    assert "HalalCheck" in session.calls[0][2]["User-Agent"]
+    assert "Bayan" in session.calls[0][2]["User-Agent"]
 
 
 def test_upca_gets_leading_zero():

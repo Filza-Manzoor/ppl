@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 import requests
 
 BASE_URL = "https://world.openfoodfacts.org"
-USER_AGENT = "HalalCheck/0.1 (open-source student project)"
+USER_AGENT = "Bayan/0.1 (open-source student project)"
 TIMEOUT = 10
 FIELDS = (
     "code",
