@@ -36,12 +36,7 @@ def esc(value) -> str:
 
 
 LOGO_SVG = (
-    '<svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" '
-    'role="img" aria-label="Ppl logo">'
-    '<rect width="38" height="38" rx="11" fill="#2747D8"/>'
-    '<rect x="10.5" y="9" width="4.6" height="21" rx="2.3" fill="#fff"/>'
-    '<circle cx="21.2" cy="16.4" r="6.9" fill="none" stroke="#fff" stroke-width="4.6"/>'
-    '<circle cx="21.2" cy="16.4" r="2.3" fill="#F2A93B"/></svg>'
+    '<svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ppl logo"><rect x=".6" y=".6" width="36.8" height="36.8" rx="10.5" fill="#fff" stroke="#111" stroke-width="1.2"/><circle cx="22.6" cy="15.4" r="8.4" fill="#111"/><circle cx="22.6" cy="15.4" r="5.7" fill="#fff"/><path d="M12.6 33 L13.2 19.6" stroke="#111" stroke-width="5" stroke-linecap="round"/><path d="M13.4 17 L14.2 11.6" stroke="#111" stroke-width="3.2" stroke-linecap="round"/><path d="M22.6 13.6 Q24.6 9.6 28 10.4 Q26.4 13.4 22.6 13.6z" fill="#2FA84F"/><circle cx="20.7" cy="16.8" r="2" fill="#C8102E"/><circle cx="24.6" cy="17" r="2" fill="#C8102E"/><path d="M20.7 14.8 Q21.8 12.8 22.6 13.6 M24.6 15 Q23.8 13.6 22.6 13.6" stroke="#2FA84F" stroke-width=".6" fill="none"/></svg>'
 )
 
 CSS = """
