@@ -1,4 +1,4 @@
-"""Peopl: a closed-loop community table for UChicago. Run with: streamlit run app.py"""
+"""Ppl: a closed-loop community table for UChicago. Run with: streamlit run app.py"""
 from __future__ import annotations
 
 import os
@@ -20,7 +20,7 @@ try:
 except Exception:  # fall back to an emoji if the file is missing
     _ICON = "🍽️"
 
-st.set_page_config(page_title="Peopl", page_icon=_ICON, layout="centered")
+st.set_page_config(page_title="Ppl", page_icon=_ICON, layout="centered")
 st.markdown(theme.CSS, unsafe_allow_html=True)
 
 
@@ -50,7 +50,7 @@ def _sender(email: str, code: str) -> None:
     elif settings.dev_show_code:
         st.session_state["dev_code"] = code
     else:
-        raise auth.AuthError("Sign-in email is not set up yet. Ask the person who runs Peopl.")
+        raise auth.AuthError("Sign-in email is not set up yet. Ask the person who runs Ppl.")
 
 
 def _finish_login(user: dict) -> None:
@@ -173,6 +173,6 @@ with t_you:
 st.markdown(
     f'<p class="foot">{theme.esc(foodcheck.DISCLAIMER)}</p>'
     '<p class="foot">Product data: Open Food Facts (ODbL). Photos are sent to Google Gemini to be read. '
-    "This app does not store them, and your location is never saved. Peopl is a student project and is not run by the University of Chicago.</p>",
+    "This app does not store them, and your location is never saved. Ppl is a student project and is not run by the University of Chicago.</p>",
     unsafe_allow_html=True,
 )

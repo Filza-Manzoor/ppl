@@ -9,7 +9,7 @@ from . import feedback, off, pipeline, rules, theme, vision
 
 VISION_CAP = int(os.getenv("VISION_CALLS_PER_SESSION", "12"))
 DISCLAIMER = (
-    "Peopl gives information, not a religious ruling. Scholars and certifiers "
+    "Ppl gives information, not a religious ruling. Scholars and certifiers "
     "differ, and recipes change. When it matters, look for a halal logo from a "
     "certifier you trust, or ask the maker."
 )

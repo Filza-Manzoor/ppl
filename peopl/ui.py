@@ -199,7 +199,7 @@ def you_tab(engine, user: dict, settings, token: str | None) -> bool:
     """Returns True when the person signed out or deleted the account."""
     st.markdown(f'<div class="title">{theme.esc(user["nickname"])}</div>', unsafe_allow_html=True)
     st.caption(
-        "Peopl does not save your email address. It keeps a scrambled version so it can recognise you."
+        "Ppl does not save your email address. It keeps a scrambled version so it can recognise you."
     )
     if st.button("Sign out", key="signout"):
         auth.sign_out(engine, token, pepper=settings.pepper)

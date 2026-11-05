@@ -13,11 +13,11 @@ def smtp_configured(get=os.getenv) -> bool:
 
 def send_code_email(to: str, code: str, get=os.getenv) -> None:
     msg = EmailMessage()
-    msg["Subject"] = "Your Peopl sign-in code"
+    msg["Subject"] = "Your Ppl sign-in code"
     msg["From"] = get("SMTP_FROM") or get("SMTP_USER")
     msg["To"] = to
     msg.set_content(
-        f"Your Peopl code is {code}.\n\n"
+        f"Your Ppl code is {code}.\n\n"
         "It works for 10 minutes. If you did not ask for it, you can ignore this email."
     )
     with smtplib.SMTP(get("SMTP_HOST"), int(get("SMTP_PORT") or 587), timeout=15) as server:

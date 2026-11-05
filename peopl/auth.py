@@ -65,7 +65,7 @@ def request_code(engine, raw_email, *, pepper, domains, send, now=None) -> str:
     if email is None:
         raise AuthError("Enter your full email address.")
     if not domain_allowed(email, domains):
-        raise AuthError("Peopl is only for people with a " + " or ".join(domains) + " email.")
+        raise AuthError("Ppl is only for people with a " + " or ".join(domains) + " email.")
     h = hash_email(email, pepper)
     with engine.begin() as conn:
         banned = conn.execute(select(users.c.banned).where(users.c.email_hash == h)).scalar()

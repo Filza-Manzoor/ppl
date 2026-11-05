@@ -9,7 +9,7 @@ import html
 
 from . import rules
 
-NAME = "Peopl"
+NAME = "Ppl"
 TAGLINE = "Good food travels between friends."
 
 VERDICT_WORD = {
@@ -37,7 +37,7 @@ def esc(value) -> str:
 
 LOGO_SVG = (
     '<svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" '
-    'role="img" aria-label="Peopl logo">'
+    'role="img" aria-label="Ppl logo">'
     '<rect width="38" height="38" rx="11" fill="#2747D8"/>'
     '<rect x="10.5" y="9" width="4.6" height="21" rx="2.3" fill="#fff"/>'
     '<circle cx="21.2" cy="16.4" r="6.9" fill="none" stroke="#fff" stroke-width="4.6"/>'

@@ -1,1 +1,1 @@
-"""Peopl: a closed-loop community table for UChicago."""
+"""Ppl: a closed-loop community table for UChicago."""

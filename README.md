@@ -1,8 +1,8 @@
-# Peopl
+# Ppl
 
 *Good food travels between friends.* A small closed-loop community app for UChicago: share a plate, find a plate, see events, and check what is in your food.
 
-> The food check gives information, not a religious ruling. Scholars and certifiers differ, and recipes change. Peopl is a student project and is not run by the University of Chicago.
+> The food check gives information, not a religious ruling. Scholars and certifiers differ, and recipes change. Ppl is a student project and is not run by the University of Chicago.
 
 ## What it does
 
@@ -44,6 +44,6 @@ See `.env.example`. Key ones: `APP_SECRET`, `DATABASE_URL`, `ALLOWED_DOMAINS`, `
 
 ## Safety and limits
 
-Plates need an ingredients and allergens note and a "packed and stored safely" tick. Daily limits: 6 posts, 4 claims, 30 messages. Anyone can report a post; admins can hide, dismiss, ban. People can delete their account and all their data. No money moves through the app.
+Plates need an ingredients and allergens note and a "packed and stored safely" tick. Daily limits: 6 posts, 4 claims, 30 messages. Anyone can report a post; admins can hide, dismiss, ban. Pple can delete their account and all their data. No money moves through the app.
 
 Product data: Open Food Facts (ODbL).

@@ -45,7 +45,7 @@ def sign_in(at, email, nickname):
 def test_signed_out_screen(env):
     at = new_app()
     assert not at.exception
-    assert any("Peopl" in t for t in texts(at))
+    assert any("Ppl" in t for t in texts(at))
     assert any("not a religious ruling" in t for t in texts(at))
     assert any("Join your community" in t for t in texts(at))
     assert {"Plates", "Events", "Food check", "You"} <= {t.label for t in at.tabs}
