@@ -9,3 +9,7 @@ venv/
 .DS_Store
 data/ppl.db
 *.db
+
+# Streamlit agent skills (environment-specific)
+.agents/
+.claude/
